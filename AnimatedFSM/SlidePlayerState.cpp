@@ -26,7 +26,7 @@ void SlidePlayerState::update(Player& player) {
 	// you may wish to stop the slide and have an appropriate
 	// state and animation at the end of the slide
 	// this was added so sliding does not go one indefinitely
-	if (m_clock.getElapsedTime().asSeconds() > 2.0f) {
+	if (m_clock.getTicksAsSeconds() > 2.0f) {
 		DEBUG_MSG("SlidePlayerState -> IdlePlayerState");
 		PlayerState* temp = player.getPlayerState();
 		PlayerState* state = new IdlePlayerState();
@@ -41,18 +41,18 @@ void SlidePlayerState::enter(Player& player)
 	DEBUG_MSG("Entering SlidePlayerState");
 	player.getAnimatedSprite().clearFrames();
 
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 5388, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(373, 5388, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(746, 5388, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 5739, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(373, 5739, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(746, 5739, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 6090, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(373, 6090, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(746, 6090, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 6441, 373, 351));
+	player.getAnimatedSprite().addFrame(SDL_Rect{0, 5388, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{373, 5388, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{746, 5388, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{0, 5739, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{373, 5739, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{746, 5739, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{0, 6090, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{373, 6090, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{746, 6090, 373, 351});
+	player.getAnimatedSprite().addFrame(SDL_Rect{0, 6441, 373, 351});
 
-	player.getAnimatedSpriteFrame().setTime(seconds(0.03f));
+	player.getAnimatedSpriteFrame().setTime(0.03f);
 }
 void SlidePlayerState::exit(Player& player)
 {

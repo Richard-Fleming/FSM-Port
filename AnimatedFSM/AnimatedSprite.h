@@ -1,44 +1,50 @@
 #ifndef ANIMATED_SPRITE_H
 #define ANIMATED_SPRITE_H
 
-#include <SFML\Graphics\Sprite.hpp>
-#include <SFML\System\Clock.hpp>
+#include <SDL2/SDL.h>
+#include "Clock.h"
 #include <vector>
 #include <Debug.h>
 
 using namespace std;
-using namespace sf;
 
-class AnimatedSprite : public Sprite {
+class AnimatedSprite{
 public:
 	AnimatedSprite();
-	AnimatedSprite(const Texture&);
-	AnimatedSprite(const Texture&, const IntRect&);
+	AnimatedSprite(SDL_Texture*);
+	AnimatedSprite(SDL_Texture*, SDL_Rect&);
 	~AnimatedSprite();
 
 	const Clock& getClock();
-	const Time& getTime();
-	const vector<IntRect>& getFrames();
+	const float& getTime();
+	const vector<SDL_Rect>& getFrames();
 	void clearFrames();
-	const IntRect& getFrame(int);
-	void addFrame(const IntRect&);
+	const SDL_Rect& getFrame(int);
+	void addFrame(const SDL_Rect&);
 	const int getCurrentFrame();
 	void setLooped(bool);
 	const bool getLooped();
 	void setPlayed(bool);
 	const bool getPlayed();
-	void setTime(Time);
+	void setTime(float);
 	void update();
+
+	void setTextureRect(const SDL_Rect&);
 	
 private:
 	Clock m_clock;
-	Time m_time;
-	vector<IntRect> m_frames;
+	float m_time;
+	vector<SDL_Rect> m_frames;
 	unsigned int m_current_frame;
 	bool m_loop;
 	unsigned int m_play_count;
 	unsigned int m_max_plays;
 	bool m_played;
+
+	SDL_Texture* m_texture;
+	SDL_Rect m_clip;
+	int m_textureWidth;
+	int m_textureHeight;
 };
 
 #endif // !ANIMATED_SPRITE_H

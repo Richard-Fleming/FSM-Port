@@ -1,7 +1,7 @@
 #include <Defines.h>
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include <SDL2/SDL.h>
 #include <Player.h>
 #include <Events.h>
 #include <Debug.h>
